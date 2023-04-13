@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
-{% block contnet %}
-<div>
+{% block content %}
+
   <h3>회원가입</h3>
   <form action="{% url 'accounts:signup' %}" method="POST">
     {% csrf_token %}
@@ -11,6 +11,5 @@
 
   </form>
 
-</div>
 
-{% endblock contnet %}
+{% endblock content %}
