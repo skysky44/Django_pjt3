@@ -12,7 +12,7 @@ def signup(request):
 
     else:
         form = CustomUserCreationForm()
-        
+
     context = {
         'form' : form 
     }
