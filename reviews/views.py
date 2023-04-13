@@ -30,6 +30,7 @@ def create(request):
 
 
 
+
 def detail(request, review_pk):
     review = Review.objects.get(pk=review_pk)
     comment_form = CommentForm()
