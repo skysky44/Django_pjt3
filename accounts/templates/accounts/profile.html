@@ -19,13 +19,12 @@
     </p>
     <p>
       영화 이름 -
-      {{review.movie}}
+      {{ review.movie }}
     </p>
     <p>
-        <a href="#">[detail]</a>
+      <a href="{% url 'reviews:detail' review.pk %}">[detail]</a>
     </p>
   </p>
-  {% comment %} <a href="{% url 'reviews:detail' review.pk %}">[detail]</a> {% endcomment %}
   <hr>
 {% endfor %}
 
