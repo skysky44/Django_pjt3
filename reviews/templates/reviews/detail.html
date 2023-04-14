@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
 
+{% block style %}
+.line {
+  border-top: 2px solid #7D7E84;
+}
+
+
+{% endblock style %}
+
 {% block content %}
-<h1>Detail</h1>
+<h1 class='m-3'>리뷰 상세보기</h1>
+<div class='line mb-3 ms-2 me-2'></div>
+<div class='m-3'>
   <p class="rp">작성자 - {{ review.user }}</p>
   <p>후기 번호: {{ review.pk }}</p>
   <p>후기 제목: {{ review.title }}</p>
@@ -10,27 +20,33 @@
   {% if review.image %}
     <p><img src="{{ review.image.url }}" alt="img" class="w-25"></p>
   {% endif %}
+</div>
 
   {% if request.user == review.user %}
-    <a href="{% url 'reviews:update' review.pk %}">[UPDATE]</a>
-    <br><br>
-    <form action="{% url 'reviews:delete' review.pk  %}" method="POST">
-      {% csrf_token %}
-      <input type="submit" value="삭제">
-    </form>
-    <br>
+  <div class="d-flex d-row">
+    <div class='btn btn-secondary ms-3 me-3'>
+      <a href="{% url 'reviews:update' review.pk %}" class='text-white' style='text-decoration: none;'>수정하기</a>
+    </div>
+      <form action="{% url 'reviews:delete' review.pk  %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="삭제" class='btn btn-danger'>
+      </form>
+      <br>
+  </div>
   {% endif %}
-  <a href="{% url 'reviews:index' %}">[back]</a>
+
   <hr>
+  <h3>
+    댓글 목록
+  </h3>
+
   <form action="{% url 'reviews:comment_create' review.pk %}" method="POST">
     {% csrf_token %}
     {{ comment_form.as_p }}
     <input type="submit" value="댓글 작성">
   </form>
-  <hr>
-  <h3>
-    댓글 목록
-  </h3>
+
+  
   {% for comments in comment %}
       <p>
         댓글 작성자 -
@@ -48,7 +64,6 @@
           <input type="submit" value="댓글 삭제">
         </form>
       {% endif %}
-    <hr>
   {% endfor %}
 
 {% endblock content %}
