@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .forms import CustomUserCreationForm, CustomAuthenticationForm
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
@@ -38,12 +38,12 @@ def login(request):
         return redirect('reviews:index')
     
     if request.method == 'POST':
-        form = AuthenticationForm(request, request.POST)
+        form = CustomAuthenticationForm(request, request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
             return redirect('reviews:index')
     else:
-        form = AuthenticationForm()
+        form = CustomAuthenticationForm()
     context = {
         'form' : form,
     }
