@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
-
 {% block style %}
 .badge {
   width: 70px;
@@ -26,13 +25,13 @@
       {% endif %}
     </div>
   </div>
+
   {% if review.image %}
     <p class= 'row justify-content-center'>
       <img src="{{ review.image.url }}" alt="img" class="w-25 ">
     </p>
   {% endif %}
-  
-  
+
   <div class="row m-2">
     <div class="badge bg-secondary mx-2 p-2">제목</div> {{ review.title }}
   </div>
