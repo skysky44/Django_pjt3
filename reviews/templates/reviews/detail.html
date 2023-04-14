@@ -24,8 +24,12 @@
   <hr>
   <form action="{% url 'reviews:comment_create' review.pk %}" method="POST">
     {% csrf_token %}
-    {{ comment_form.as_p }}
-    <input type="submit" value="댓글 작성">
+    <div class="input-group">
+      {{ comment_form }}
+      <button type="submit" class="btn btn-secondary">댓글 작성</button>
+
+      </div>
+    </div>
   </form>
   <hr>
   <h3>
